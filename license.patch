@@ -4,7 +4,7 @@
  
  static int nompc = 0;
  module_param(nompc, int, 0);
-+MODULE_LICENSE("GPL\0Mixed/Proprietary");
++MODULE_LICENSE("Mixed/Proprietary");
  
  #ifdef quote_str
  #undef quote_str
