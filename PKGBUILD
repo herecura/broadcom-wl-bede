@@ -4,36 +4,33 @@
 # Contributor: Gaetan Bisson <bisson@archlinux.org>
 
 pkgname=broadcom-wl-bede
-pkgver=6.30.223.248
-pkgrel=38
+pkgver=6.30.223.271
+pkgrel=0.1
 _pkgdesc='Broadcom 802.11abgn hybrid Linux networking device driver for linux-bede'
-_extramodules=4.2-BEDE-external
+_extramodules=4.3-BEDE-external
 pkgdesc="${_pkgdesc}"
 arch=('i686' 'x86_64')
 url='http://www.broadcom.com/support/802.11/linux_sta.php'
 license=('custom')
-makedepends=('linux-bede>=4.2.5' 'linux-bede<4.3' 'linux-bede-headers>=4.2' 'linux-bede-headers<4.3')
+makedepends=('linux-bede>=4.3rc1' 'linux-bede<4.4' 'linux-bede-headers>=4.3rc1' 'linux-bede-headers<4.4')
 source=(
     'modprobe.d'
-    'license.patch'
-    'linux-recent.patch'
-    'gcc.patch'
+    '001-null-pointer-fix.patch'
+    'linux-4.3.patch'
 )
 source_i686=("http://www.broadcom.com/docs/linux_sta/hybrid-v35-nodebug-pcoem-${pkgver//./_}.tar.gz")
 source_x86_64=("http://www.broadcom.com/docs/linux_sta/hybrid-v35_64-nodebug-pcoem-${pkgver//./_}.tar.gz")
 sha256sums=('b4aca51ac5ed20cb79057437be7baf3650563b7a9d5efc515f0b9b34fbb9dc32'
-            '2f70be509aac743bec2cc3a19377be311a60a1c0e4a70ddd63ea89fae5df08ac'
-            'f235507d373c94d7783e2c51736f92d5ef609b0359106372bf81107ff15c97a1'
-            'b07ce80f2e079cce08c8ec006dda091f6f73f158c8a62df5bac2fbabb6989849')
-sha256sums_i686=('b196543a429c22b2b8d75d0c1d9e6e7ff212c3d3e1f42cc6fd9e4858f01da1ad')
-sha256sums_x86_64=('3d994cc6c05198f4b6f07a213ac1e9e45a45159899e6c4a7feca5e6c395c3022')
+            '32e505a651fdb9fd5e4870a9d6de21dd703dead768c2b3340a2ca46671a5852f'
+            'ea44e75fc93fd73ec67db639fc77b7b9bb714fadb3ce29f8553e4adc3dc71834')
+sha256sums_i686=('4f8b70b293ac8cc5c70e571ad5d1878d0f29d133a46fe7869868d9c19b5058cd')
+sha256sums_x86_64=('5f79774d5beec8f7636b59c0fb07a03108eef1e3fd3245638b20858c714144be')
 
 install=broadcom-wl-bede.install
 
 prepare() {
-	patch -p1 -i "$srcdir/linux-recent.patch"
-	patch -p1 -i "$srcdir/license.patch"
-	patch -p1 -i "$srcdir/gcc.patch"
+    patch -p1 -i "$srcdir/001-null-pointer-fix.patch"
+    patch -p1 -i "$srcdir/linux-4.3.patch"
 
 	sed -e "/BRCM_WLAN_IFNAME/s:eth:wlan:" -i src/wl/sys/wl_linux.c
 }
@@ -45,7 +42,7 @@ build() {
 }
 
 package() {
-	depends=('linux-bede>=4.2' 'linux-bede<4.3')
+	depends=('linux-bede>=4.3rc1' 'linux-bede<4.4')
 
 	install -Dm644 wl.ko "${pkgdir}/usr/lib/modules/${_extramodules}/wl.ko"
 
