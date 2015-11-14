@@ -1,7 +1,7 @@
 pkgbase = broadcom-wl-bede
 	pkgdesc = Broadcom 802.11abgn hybrid Linux networking device driver for linux-bede
 	pkgver = 6.30.223.271
-	pkgrel = 1.2
+	pkgrel = 1.3
 	url = http://www.broadcom.com/support/802.11/linux_sta.php
 	install = broadcom-wl-bede.install
 	arch = i686
