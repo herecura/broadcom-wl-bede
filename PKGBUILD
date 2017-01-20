@@ -5,10 +5,10 @@
 
 pkgname=broadcom-wl-bede
 pkgver=6.30.223.271
-pkgrel=58
+pkgrel=59
 _pkgdesc='Broadcom 802.11abgn hybrid Linux networking device driver for linux-bede'
 _extramodules=4.9-BEDE-external
-_current_linux_version=4.9.4
+_current_linux_version=4.9.5
 _next_linux_version=4.10
 pkgdesc="${_pkgdesc}"
 arch=('i686' 'x86_64')
