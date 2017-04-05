@@ -1,0 +1,24 @@
+diff -urN a/src/wl/sys/wl_cfg80211_hybrid.c b/src/wl/sys/wl_cfg80211_hybrid.c
+--- a/src/wl/sys/wl_cfg80211_hybrid.c	2017-04-05 14:01:19.233214020 +0200
++++ b/src/wl/sys/wl_cfg80211_hybrid.c	2017-04-05 14:08:22.036052702 +0200
+@@ -29,6 +29,7 @@
+ #include <linux/kernel.h>
+ #include <linux/kthread.h>
+ #include <linux/netdevice.h>
++#include <linux/sched/signal.h>
+ #include <linux/ieee80211.h>
+ #include <net/cfg80211.h>
+ #include <linux/nl80211.h>
+diff -urN a/src/wl/sys/wl_linux.c b/src/wl/sys/wl_linux.c
+--- a/src/wl/sys/wl_linux.c	2017-04-05 14:01:19.251213525 +0200
++++ b/src/wl/sys/wl_linux.c	2017-04-05 14:27:12.784826738 +0200
+@@ -2915,7 +2915,9 @@
+ 	if (skb == NULL) return;
+ 
+ 	skb->dev = wl->monitor_dev;
++#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 11, 0)
+ 	skb->dev->last_rx = jiffies;
++#endif
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 22)
+ 	skb_reset_mac_header(skb);
+ #else
