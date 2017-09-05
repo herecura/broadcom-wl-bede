@@ -5,13 +5,13 @@
 
 pkgname=broadcom-wl-bede
 pkgver=6.30.223.271
-pkgrel=118
+pkgrel=119
 _pkgdesc='Broadcom 802.11abgn hybrid Linux networking device driver for linux-bede'
-_extramodules=4.12-BEDE-external
-_current_linux_version=4.12.10
-_next_linux_version=4.13
+_extramodules=4.13-BEDE-external
+_current_linux_version=4.13
+_next_linux_version=4.14
 pkgdesc="${_pkgdesc}"
-arch=('i686' 'x86_64')
+arch=('x86_64')
 url='http://www.broadcom.com/support/802.11/linux_sta.php'
 license=('custom')
 makedepends=(
@@ -40,7 +40,6 @@ sha256sums=('b4aca51ac5ed20cb79057437be7baf3650563b7a9d5efc515f0b9b34fbb9dc32'
             '2306a59f9e7413f35a0669346dcd05ef86fa37c23b566dceb0c6dbee67e4d299'
             '977b1663ce055860b0b60e7cf882658f507d81909f935d1a8b785896f64176e8'
             'a3d13e8abb96ad440dbfae29acae82d31d1ced2ea62052f1efb2c3c4add347ce')
-sha256sums_i686=('4f8b70b293ac8cc5c70e571ad5d1878d0f29d133a46fe7869868d9c19b5058cd')
 sha256sums_x86_64=('5f79774d5beec8f7636b59c0fb07a03108eef1e3fd3245638b20858c714144be')
 
 prepare() {
