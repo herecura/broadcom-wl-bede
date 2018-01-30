@@ -5,11 +5,11 @@
 
 pkgname=broadcom-wl-bede
 pkgver=6.30.223.271
-pkgrel=157
+pkgrel=158
 _pkgdesc='Broadcom 802.11abgn hybrid Linux networking device driver for linux-bede'
-_extramodules=4.14-BEDE-external
-_current_linux_version=4.14.15
-_next_linux_version=4.15
+_extramodules=4.15-BEDE-external
+_current_linux_version=4.15
+_next_linux_version=4.16
 pkgdesc="${_pkgdesc}"
 arch=('x86_64')
 url='http://www.broadcom.com/support/802.11/linux_sta.php'
@@ -29,6 +29,7 @@ source=(
     '005-debian-fix-kernel-warnings.patch'
     '006-linux411.patch'
     '007-linux412.patch'
+    '008-linux415.patch'
 )
 source_i686=("http://www.broadcom.com/docs/linux_sta/hybrid-v35-nodebug-pcoem-${pkgver//./_}.tar.gz")
 source_x86_64=("http://www.broadcom.com/docs/linux_sta/hybrid-v35_64-nodebug-pcoem-${pkgver//./_}.tar.gz")
@@ -39,7 +40,8 @@ sha256sums=('b4aca51ac5ed20cb79057437be7baf3650563b7a9d5efc515f0b9b34fbb9dc32'
             '833af3b209d6a101d9094db16480bda2ad9a85797059b0ae0b13235ad3818e9c'
             '2306a59f9e7413f35a0669346dcd05ef86fa37c23b566dceb0c6dbee67e4d299'
             '977b1663ce055860b0b60e7cf882658f507d81909f935d1a8b785896f64176e8'
-            'a3d13e8abb96ad440dbfae29acae82d31d1ced2ea62052f1efb2c3c4add347ce')
+            'a3d13e8abb96ad440dbfae29acae82d31d1ced2ea62052f1efb2c3c4add347ce'
+            '08c24157cf3b93b60e67e600d1d90223447361990df09acfb00281d79813d167')
 sha256sums_x86_64=('5f79774d5beec8f7636b59c0fb07a03108eef1e3fd3245638b20858c714144be')
 
 prepare() {
@@ -50,6 +52,7 @@ prepare() {
     patch -p1 -i "$srcdir/005-debian-fix-kernel-warnings.patch"
     patch -p1 -i "$srcdir/006-linux411.patch"
     patch -p1 -i "$srcdir/007-linux412.patch"
+    patch -p1 -i "$srcdir/008-linux415.patch"
 
 	sed -e "/BRCM_WLAN_IFNAME/s:eth:wlan:" -i src/wl/sys/wl_linux.c
 }
