@@ -5,11 +5,11 @@
 
 pkgname=broadcom-wl-bede
 pkgver=6.30.223.271
-pkgrel=217
+pkgrel=218
 _pkgdesc='Broadcom 802.11abgn hybrid Linux networking device driver for linux-bede'
-_extramodules=4.17-BEDE-external
-_current_linux_version=4.17.14
-_next_linux_version=4.18
+_extramodules=4.18-BEDE-external
+_current_linux_version=4.18
+_next_linux_version=4.19
 pkgdesc="${_pkgdesc}"
 arch=('x86_64')
 url='http://www.broadcom.com/support/802.11/linux_sta.php'
@@ -70,9 +70,8 @@ package() {
     )
 
 	install -Dm644 wl.ko "${pkgdir}/usr/lib/modules/${_extramodules}/wl.ko"
+    find "${pkgdir}" -name '*.ko' -exec xz {} +
 
-	# makepkg does not do this automatically for this pkg so do it here
-	gzip -9 "${pkgdir}/usr/lib/modules/${_extramodules}/wl.ko"
 	install -Dm644 lib/LICENSE.txt "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 	install -Dm644 modprobe.d "${pkgdir}/usr/lib/modprobe.d/broadcom-wl-bede.conf"
 }
