@@ -1,5 +1,9 @@
 blacklist b43
-blacklist ssb
+blacklist b43legacy
+blacklist bcm43xx
 blacklist bcma
-blacklist brcmsmac
+blacklist brcm80211
 blacklist brcmfmac
+blacklist brcmsmac
+blacklist ssb
+
