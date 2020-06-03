@@ -7,10 +7,10 @@
 _pkgname=broadcom-wl
 pkgname=$_pkgname-bede
 pkgver=6.30.223.271
-pkgrel=411
+pkgrel=412
 _pkgdesc='Broadcom 802.11abgn hybrid Linux networking device driver for linux-bede'
-_current_linux_version=5.6.15
-_next_linux_version=5.7
+_current_linux_version=5.7
+_next_linux_version=5.8
 pkgdesc="${_pkgdesc}"
 arch=('x86_64')
 url='http://www.broadcom.com/support/802.11/linux_sta.php'
